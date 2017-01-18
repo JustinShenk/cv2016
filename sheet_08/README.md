@@ -61,9 +61,9 @@ def match_template(img, template):
     minDiff = float('inf')
     for rowInd, row in enumerate(img):
         for colInd, pixel in enumerate(row):
-            if rowInd < img.shape[0] - template.shape[0] - 1 and colInd < img.shape[1] - template.shape[1] - 1 and rowInd % 50 == 0 and colInd % 50 == 0:
+            if rowInd < img.shape[0] - template.shape[0] - 1 and colInd < img.shape[1] - template.shape[1] - 1 and rowInd % 10 == 0 and colInd % 10 == 0:
                 imgMean = np.sum(img[rowInd:rowInd+template.shape[0],colInd:colInd+template.shape[1]]) // pixelNumber 
-                diff = abs(templateMean- imgMean)                
+                diff = np.sqrt(np.sum(np.square(templateMean- imgMean)))
                 shading[rowInd:rowInd+template.shape[0],colInd:colInd+template.shape[1]] = diff
                 if diff < minDiff:
                     minDiff = diff
@@ -77,8 +77,8 @@ def match_template(img, template):
     plt.imshow(template)
     plt.subplot(1,3,3)
     plt.title('Template Match Shading')
-#     currentAxis = plt.gca()
-#     currentAxis.add_patch(Rectangle((guessLocation[0] - 50, guessLocation[1] - 50), 100, 100, facecolor="gray"))
+    currentAxis = plt.gca()
+    currentAxis.add_patch(Rectangle((guessLocation[0] - 50, guessLocation[1] - 50), 100, 100, facecolor="gray"))
     plt.imshow(shading)        
 
 plt.gray()
@@ -90,26 +90,28 @@ plt.show()
 
     (2340, 1700) (130, 109)
     (2340, 1700) (186, 106)
-    (2340, 1700) (768, 361)
     (2340, 1700) (134, 77)
-    (2340, 1700) (181, 104)
     (2340, 1700) (162, 79)
+    (2340, 1700) (181, 104)
+    (2340, 1700) (768, 361)
     (2340, 1700) (130, 109)
     (2340, 1700) (186, 106)
-
-
-    /Users/justinshenk/anaconda3/envs/cvloop/lib/python3.5/site-packages/matplotlib/pyplot.py:524: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`).
-      max_open_warning, RuntimeWarning)
-
-
-    (2340, 1700) (768, 361)
     (2340, 1700) (134, 77)
-    (2340, 1700) (181, 104)
     (2340, 1700) (162, 79)
+    (2340, 1700) (181, 104)
+    (2340, 1700) (768, 361)
 
 
 
-    <matplotlib.figure.Figure at 0x10e475828>
+    <matplotlib.figure.Figure at 0x10b2cd710>
+
+
+
+![png](sheet08_files/sheet08_16_2.png)
+
+
+
+![png](sheet08_files/sheet08_16_3.png)
 
 
 
@@ -150,62 +152,6 @@ plt.show()
 
 
 ![png](sheet08_files/sheet08_16_13.png)
-
-
-
-![png](sheet08_files/sheet08_16_14.png)
-
-
-
-![png](sheet08_files/sheet08_16_15.png)
-
-
-
-![png](sheet08_files/sheet08_16_16.png)
-
-
-
-![png](sheet08_files/sheet08_16_17.png)
-
-
-
-![png](sheet08_files/sheet08_16_18.png)
-
-
-
-![png](sheet08_files/sheet08_16_19.png)
-
-
-
-![png](sheet08_files/sheet08_16_20.png)
-
-
-
-![png](sheet08_files/sheet08_16_21.png)
-
-
-
-![png](sheet08_files/sheet08_16_22.png)
-
-
-
-![png](sheet08_files/sheet08_16_23.png)
-
-
-
-![png](sheet08_files/sheet08_16_24.png)
-
-
-
-![png](sheet08_files/sheet08_16_25.png)
-
-
-
-![png](sheet08_files/sheet08_16_26.png)
-
-
-
-![png](sheet08_files/sheet08_16_27.png)
 
 
 ## Exercise 2 (Pattern Recognition – 6p)
