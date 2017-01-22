@@ -165,6 +165,15 @@ FIXME: change cell type to 'Markdown' and put your answer here!
 
 ```python
 import numpy as np
+import scipy
+import matplotlib
+import matplotlib.pyplot as plt
+from scipy import misc
+from scipy import sparse
+
+def autocorr(x):
+        result = np.correlate(x, x, mode='full')
+        return result[result.size/2:]
 
 def pca(data):
     """
@@ -177,11 +186,23 @@ def pca(data):
         pc - an array holding the principal components
     """
     
-    # FIXME: put your code here!
-
+    # computing eigenvalues and eigenvectors of covariance matrix
+    M = (data-np.mean(data.T,axis=1)).T #gets the autocorrelation matrix for a matrix, np.correlate only works for arrays
+    eigenval, pc = np.linalg.eig(np.cov(M)) #computes the eigenvalues and eigenvectors
+    #score = np.dot(pc.T,M) #project the data onto the new space using the dot product
+    #return pc,score,values
     
     return pc
+
+testData = np.ones((2,3))
+test = pca(testData)
+print(test)
 ```
+
+    [[ 1.  0.  0.]
+     [ 0.  1.  0.]
+     [ 0.  0.  1.]]
+
 
 ## Exercise 3 (Eigenfaces – 6p)
 
